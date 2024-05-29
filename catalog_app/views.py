@@ -6,7 +6,12 @@ from rest_framework.decorators import api_view, permission_classes
 from .models import *
 from .serializers import *
 
-# Create your views here.
+    # 'GET',
+    # 'POST',
+    # 'PUT',
+    # 'PATCH',
+    # 'DELETE',
+    # 'OPTIONS',
 
 @api_view(['GET'])
 def get_profile(request):
@@ -33,3 +38,11 @@ def create_user(request):
     profile.save()
     profile_serialized = ProfileSerializer(profile)
     return Response(profile_serialized.data)
+
+#book create (post)
+
+#book read (get)
+
+#book update (put)
+
+#book delete (delete)
