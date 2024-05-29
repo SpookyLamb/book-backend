@@ -18,10 +18,18 @@ from django.contrib import admin
 from django.urls import path
 from catalog_app.views import *
 from rest_framework_simplejwt.views import TokenObtainPairView
+from django.urls import path, include
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'books', BookViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('profile/', get_profile),
     path('token/', TokenObtainPairView.as_view()),
     path('create-user/', create_user),
+    path('create-book/', create_book),
+    path('get-books/', get_books),
+    path('', include(router.urls)),
 ]
