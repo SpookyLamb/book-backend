@@ -54,7 +54,7 @@ def create_book(request):
         user = user,
         title = request.data['title'],
         author = request.data['author'],
-        genre = request.data['genre'], #default for user_rating and favorite, those are updated with put
+        genre = request.data['genre'], #use default for user_rating and favorite, those are updated with put
     )
     book.save()
     
