@@ -54,7 +54,9 @@ def create_book(request):
         user = user,
         title = request.data['title'],
         author = request.data['author'],
-        genre = request.data['genre'], #use default for user_rating and favorite, those are updated with put
+        genre = request.data['genre'],
+        favorite = request.data['favorite'],
+        user_rating = request.data['user_rating'],
     )
     book.save()
     
@@ -77,5 +79,23 @@ def get_books(request):
     return Response(books_serialized)
 
 #book update (put)
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def edit_book(request):
+    id = request.data['id']
+    print("ID: ", id)
+
+    #grab the book with the specific id
+    book = Book.objects.get(pk=id)
+
+    book.title = request.data['title']
+    book.author = request.data['author']
+    book.genre = request.data['genre']
+    book.favorite = request.data['favorite']
+    book.user_rating = request.data['user_rating']
+    book.save()
+    
+    book_serialized = BookSerializer(book)
+    return Response(book_serialized.data)
 
 #book delete (delete)

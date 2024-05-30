@@ -31,5 +31,6 @@ urlpatterns = [
     path('create-user/', create_user),
     path('create-book/', create_book),
     path('get-books/', get_books),
+    path('edit-book/', edit_book),
     path('', include(router.urls)),
 ]
