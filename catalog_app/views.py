@@ -83,7 +83,6 @@ def get_books(request):
 @permission_classes([IsAuthenticated])
 def edit_book(request):
     id = request.data['id']
-    print("ID: ", id)
 
     #grab the book with the specific id
     book = Book.objects.get(pk=id)
@@ -99,3 +98,13 @@ def edit_book(request):
     return Response(book_serialized.data)
 
 #book delete (delete)
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def delete_book(request):
+    id = request.data['id']
+
+    #grab the book with the specific id
+    book = Book.objects.get(pk=id)
+    book.delete()
+    
+    return Response()
